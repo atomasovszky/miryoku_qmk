@@ -5,6 +5,8 @@
 
 #pragma once
 
+#define SPLIT_USB_DETECT
+
 // default but used in macros
 #undef TAPPING_TERM
 #define TAPPING_TERM 200
@@ -34,10 +36,13 @@
 
 // Thumb Combos
 #if defined (MIRYOKU_KLUDGE_THUMBCOMBOS)
-  #define COMBO_COUNT 8
-  #define COMBO_TERM 200
-  #define EXTRA_SHORT_COMBOS
+  #define COMBO_COUNT 1
+  #define COMBO_TERM 50
+//   #define EXTRA_SHORT_COMBOS
+  #define COMBO_MUST_HOLD_PER_COMBO true
 #endif
 
-#include "custom_config.h"
+#define SPLIT_USB_DETECT
 
+#include "custom_config.h"
+#define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
