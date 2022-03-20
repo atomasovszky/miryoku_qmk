@@ -45,8 +45,8 @@ U_NA,              KC_ALGR,           U_NA,              U_NA,              U_NA
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              KC_ENT,            KC_BSPC,           KC_DEL,            U_NP,              U_NP
 
 #define MIRYOKU_ALTERNATIVES_MOUSE_INVERTEDT \
-RESET,             U_NA,              U_NA,              U_NA,              U_NA,              U_NU,              KC_WH_L,           KC_MS_U,           KC_WH_R,           KC_WH_U,           \
-KC_LSFT,           KC_LCTL,           KC_LALT,           KC_LGUI,           U_NA,              U_NU,              KC_MS_L,           KC_MS_D,           KC_MS_R,           KC_WH_D,           \
+RESET,             U_NA,              U_NA,              U_NA,              U_NA,              KC_WH_D,           KC_WH_R,           KC_MS_U,           KC_WH_L,           KC_WH_U,           \
+KC_LSFT,           KC_LCTL,           KC_LALT,           KC_LGUI,           U_NA,              U_NU,              KC_MS_L,           KC_MS_D,           KC_MS_R,           U_NU,              \
 U_NA,              KC_ALGR,           U_NA,              U_NA,              U_NA,              U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             \
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              KC_BTN1,           KC_BTN3,           KC_BTN2,           U_NP,              U_NP
 
