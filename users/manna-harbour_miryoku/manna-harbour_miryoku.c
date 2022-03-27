@@ -89,6 +89,8 @@ combo_t key_combos[COMBO_COUNT] = {
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   if (!is_keyboard_master()) {
     return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
+  } else {
+      return OLED_ROTATION_270;
   }
   return rotation;
 }
@@ -102,30 +104,31 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 #define FUN (1<<FUN)
 
 void oled_render_layer_state(void) {
-    oled_write_P(PSTR("\n\n"), false);
+    oled_write_P(PSTR("\n\n\n\n\n\n\n"), false);
     switch (layer_state) {
         case BASE:
-            oled_write_ln_P(PSTR("------ B A S E ------"), false);
+            oled_write_ln_P(PSTR("BASE "), false);
             break;
         case NAV:
-            oled_write_ln_P(PSTR("------- N A V -------"), false);
+            oled_write_ln_P(PSTR("NAV  "), false);
             break;
         case MOUSE:
-            oled_write_ln_P(PSTR("----- M O U S E -----"), false);
+            oled_write_ln_P(PSTR("MOUSE"), false);
             break;
         case MEDIA:
-            oled_write_ln_P(PSTR("----- M E D I A -----"), false);
+            oled_write_ln_P(PSTR("MEDIA"), false);
             break;
         case NUM:
-            oled_write_ln_P(PSTR("------- N U M -------"), false);
+            oled_write_ln_P(PSTR("NUM  "), false);
             break;
         case SYM:
-            oled_write_ln_P(PSTR("------- S Y M -------"), false);
+            oled_write_ln_P(PSTR("SYM  "), false);
             break;
         case FUN:
-            oled_write_ln_P(PSTR("------- F U N -------"), false);
+            oled_write_ln_P(PSTR("FUN  "), false);
             break;
     }
+    oled_write_P(PSTR("layer"), false);
 }
 
 static void oled_render_logo(void) {
