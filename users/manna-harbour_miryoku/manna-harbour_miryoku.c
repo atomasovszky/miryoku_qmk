@@ -16,17 +16,6 @@ enum custom_keycodes {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   static uint16_t my_hash_timer;
   switch (keycode) {
-    case LEFT_F13:
-      if(record->event.pressed) {
-        my_hash_timer = timer_read();
-        register_code(KC_F13); // Change the key to be held here
-      } else {
-        unregister_code(KC_F13); // Change the key that was held here, too!
-        if (timer_elapsed(my_hash_timer) < TAPPING_TERM) {
-          SEND_STRING(SS_TAP(X_Z)); // Change the character(s) to be sent on tap here
-        }
-      }
-      return false;
     case RIGHT_F13:
       if(record->event.pressed) {
         my_hash_timer = timer_read();
