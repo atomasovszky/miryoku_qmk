@@ -45,4 +45,4 @@
 #define SPLIT_USB_DETECT
 
 #include "custom_config.h"
-
+#define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
