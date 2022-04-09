@@ -17,15 +17,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   static uint16_t my_hash_timer;
   switch (keycode) {
     case RIGHT_F13:
-      if(record->event.pressed) {
+      if( record -> event.pressed) {
         my_hash_timer = timer_read();
         register_code(KC_F13);
       } else {
         unregister_code(KC_F13);
         if (timer_elapsed(my_hash_timer) < TAPPING_TERM) {
-          SEND_STRING(SS_TAP(X_SLSH));
+          SEND_STRING(SS_TAP(X_DOT));
         }
       }
+
+    case LEFT_F13:
+      if (record -> event.pressed) {
+        my_hash_timer = timer_read();
+        register_code(KC_F13);
+      } else {
+        unregister_code(KC_F13);
+        if (timer_elapsed(my_hash_timer) < TAPPING_TERM) {
+          SEND_STRING(SS_TAP(X_X));
+        }
+      }
+
+     case LT(0, KC_W):
+        if (record->tap.count && record->event.pressed) {
+
+            register_code(KC_F13);
+            tap_code16(KC_W);
+
+            unregister_code(KC_F13);
+            return false;
+        }
+
       return false;
   }
   return true;
