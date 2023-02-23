@@ -9,48 +9,50 @@
 
 // for sending f13 when holding down thumbkey no 6 (delete)
 enum custom_keycodes {
-  LEFT_F13 = SAFE_RANGE,
-  RIGHT_F13
+    LEFT_F13 = SAFE_RANGE,
+    RIGHT_F13
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  static uint16_t my_hash_timer;
-  switch (keycode) {
-    case RIGHT_F13:
-      if( record -> event.pressed) {
-        my_hash_timer = timer_read();
-        register_code(KC_F13);
-      } else {
-        unregister_code(KC_F13);
-        if (timer_elapsed(my_hash_timer) < TAPPING_TERM) {
-          SEND_STRING(SS_TAP(X_DOT));
-        }
-      }
+    static uint16_t my_hash_timer;
+    switch (keycode) {
 
-    case LEFT_F13:
-      if (record -> event.pressed) {
-        my_hash_timer = timer_read();
-        register_code(KC_F13);
-      } else {
-        unregister_code(KC_F13);
-        if (timer_elapsed(my_hash_timer) < TAPPING_TERM) {
-          SEND_STRING(SS_TAP(X_X));
-        }
-      }
+        case RIGHT_F13:
+            if( record -> event.pressed) {
+                my_hash_timer = timer_read();
+                register_code(KC_F13);
+            } else {
+                unregister_code(KC_F13);
+                if (timer_elapsed(my_hash_timer) < TAPPING_TERM) {
+                    SEND_STRING(SS_TAP(X_DOT));
+                }
+            }
+        return false;
 
-     case LT(0, KC_W):
-        if (record->tap.count && record->event.pressed) {
+        case LEFT_F13:
+            if( record -> event.pressed) {
+                my_hash_timer = timer_read();
+                register_code(KC_F13);
+            } else {
+                unregister_code(KC_F13);
+                if (timer_elapsed(my_hash_timer) < TAPPING_TERM) {
+                    SEND_STRING(SS_TAP(X_X));
+                }
+            }
+        return false;
 
-            register_code(KC_F13);
-            tap_code16(KC_W);
+    //  case LT(0, KC_W):
+    //     if (record->tap.count && record->event.pressed) {
 
-            unregister_code(KC_F13);
-            return false;
-        }
+    //         register_code(KC_F13);
+    //         tap_code16(KC_W);
 
-      return false;
-  }
-  return true;
+    //         unregister_code(KC_F13);
+    //         return false;
+    //     }
+
+    }
+    return true;
 }
 
 enum layers { MIRYOKU_LAYER_NAMES };
