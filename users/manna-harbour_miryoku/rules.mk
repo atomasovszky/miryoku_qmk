@@ -5,6 +5,7 @@ SPLIT_KEYBOARD = yes
 MOUSEKEY_ENABLE = yes # Mouse keys
 EXTRAKEY_ENABLE = yes # Audio control and System control
 AUTO_SHIFT_ENABLE = yes # Auto Shift
+TAP_DANCE_ENABLE = yes
 
 SRC += manna-harbour_miryoku.c # keymaps
 

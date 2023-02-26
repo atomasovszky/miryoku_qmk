@@ -20,8 +20,8 @@ LT(BUTTON, KC_Z),  ALGR_T(KC_X),      KC_C,              KC_D,              KC_V
 U_NP,              U_NP,              LT(MEDIA, KC_ESC), LT(NAV, KC_SPC),   LT(MOUSE, KC_TAB), LT(SYM, KC_ENT),   LT(NUM, KC_BSPC),  LT(FUN, KC_DEL),   U_NP,              U_NP
 
 #define MIRYOKU_ALTERNATIVES_BASE_QWERTY \
-KC_Q,              KC_W,              KC_E,              KC_R,              KC_T,              KC_Y,              KC_U,              KC_I,              KC_O,              KC_P,              \
-LSFT_T(KC_A),      LCTL_T(KC_S),      LALT_T(KC_D),      LGUI_T(KC_F),      KC_G,              KC_H,              LGUI_T(KC_J),      LALT_T(KC_K),      LCTL_T(KC_L),      LSFT_T(KC_QUOT),   \
+KC_Q,              KC_W,              TD(TD_E),          KC_R,              KC_T,              KC_Y,              TD(TD_U),          TD(TD_I),          TD(TD_O),          KC_P,              \
+TD(TD_A),          LCTL_T(KC_S),      LALT_T(KC_D),      LGUI_T(KC_F),      KC_G,              KC_H,              LGUI_T(KC_J),      LALT_T(KC_K),      LCTL_T(KC_L),      LSFT_T(KC_QUOT),   \
 KC_Z,              LEFT_F13,          KC_C,              KC_V,              KC_B,              KC_N,              KC_M,              KC_COMM,           RIGHT_F13,         KC_SLSH,           \
 U_NP,              U_NP,              LT(MEDIA, KC_ESC), LT(NAV, KC_SPC),   LT(MOUSE, KC_TAB), LT(SYM, KC_ENT),   LT(NUM, KC_BSPC),  LT(FUN, KC_DEL),   U_NP,              U_NP
 

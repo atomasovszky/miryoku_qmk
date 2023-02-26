@@ -7,6 +7,41 @@
 
 #include "manna-harbour_miryoku.h"
 
+typedef enum {
+    TD_NONE,
+    TD_UNKNOWN,
+    TD_SINGLE_TAP,
+    TD_SINGLE_HOLD,
+    TD_DOUBLE_TAP,
+    TD_DOUBLE_HOLD,
+    TD_DOUBLE_SINGLE_TAP, // Send two single taps
+    TD_TRIPLE_TAP,
+    TD_TRIPLE_HOLD,
+    TD_QUAD_TAP,
+    TD_QUAD_HOLD
+} td_state_t;
+
+typedef struct {
+    bool is_press_action;
+    td_state_t state;
+} td_tap_t;
+
+// Tap dance enums
+enum {
+    TD_A,
+    TD_E,
+    TD_I,
+    TD_O,
+    TD_U,
+    SOME_OTHER_DANCE
+};
+
+td_state_t cur_dance(qk_tap_dance_state_t *state);
+
+// For the x tap dance. Put it here so it can be used in any keymap
+void o_finished(qk_tap_dance_state_t *state, void *user_data);
+void o_reset(qk_tap_dance_state_t *state, void *user_data);
+
 // for sending f13 when holding down thumbkey no 6 (delete)
 enum custom_keycodes {
     LEFT_F13 = SAFE_RANGE,
@@ -99,6 +134,168 @@ combo_t key_combos[COMBO_COUNT] = {
 
 };
 #endif
+
+
+// TAP DANCE FOR ACCENTED CHARACTERS
+td_state_t cur_dance(qk_tap_dance_state_t *state) {
+    if (state->count == 1) {
+        if (state->interrupted || !state->pressed) return TD_SINGLE_TAP;
+        else return TD_SINGLE_HOLD;
+    } else if (state->count == 2) {
+        if (state->interrupted) return TD_DOUBLE_SINGLE_TAP;
+        else if (state->pressed) return TD_DOUBLE_HOLD;
+        else return TD_DOUBLE_TAP;
+    }
+
+    if (state->count == 3) {
+        if (state->interrupted || !state->pressed) return TD_TRIPLE_TAP;
+        else return TD_TRIPLE_HOLD;
+    }
+
+    if (state->count == 4) {
+        if (state->interrupted || !state->pressed) return TD_QUAD_TAP;
+        else return TD_QUAD_HOLD;
+    }
+
+    else return TD_UNKNOWN;
+}
+
+// Create an instance of 'td_tap_t' for the 'x' tap dance.
+static td_tap_t xtap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+void a_finished(qk_tap_dance_state_t *state, void *user_data) {
+    xtap_state.state = cur_dance(state);
+    switch (xtap_state.state) {
+        case TD_SINGLE_TAP: register_code(KC_A); break;
+        case TD_SINGLE_HOLD: register_code(KC_RSFT); break;
+        case TD_DOUBLE_TAP: register_code(KC_QUOT); break;
+
+        case TD_DOUBLE_SINGLE_TAP: tap_code(KC_A); register_code(KC_A); break;
+        default: break;
+    }
+}
+
+void a_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (xtap_state.state) {
+        case TD_SINGLE_TAP: unregister_code(KC_A); break;
+        case TD_SINGLE_HOLD: unregister_code(KC_RSFT); break;
+        case TD_DOUBLE_TAP: unregister_code(KC_QUOT); break;
+
+        case TD_DOUBLE_SINGLE_TAP: unregister_code(KC_A); break;
+        default: break;
+    }
+    xtap_state.state = TD_NONE;
+}
+
+void e_finished(qk_tap_dance_state_t *state, void *user_data) {
+    xtap_state.state = cur_dance(state);
+    switch (xtap_state.state) {
+        case TD_SINGLE_TAP: register_code(KC_E); break;
+        case TD_DOUBLE_TAP: register_code(KC_SCLN); break;
+
+        case TD_DOUBLE_SINGLE_TAP: tap_code(KC_E); register_code(KC_E); break;
+        default: break;
+    }
+}
+
+void e_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (xtap_state.state) {
+        case TD_SINGLE_TAP: unregister_code(KC_E); break;
+        case TD_DOUBLE_TAP: unregister_code(KC_SCLN); break;
+
+        case TD_DOUBLE_SINGLE_TAP: unregister_code(KC_E); break;
+        default: break;
+    }
+    xtap_state.state = TD_NONE;
+}
+
+void i_finished(qk_tap_dance_state_t *state, void *user_data) {
+    xtap_state.state = cur_dance(state);
+    switch (xtap_state.state) {
+        case TD_SINGLE_TAP: register_code(KC_I); break;
+        case TD_DOUBLE_TAP: register_code(KC_GRV); break;
+
+        case TD_DOUBLE_SINGLE_TAP: tap_code(KC_I); register_code(KC_I); break;
+        default: break;
+    }
+}
+
+void i_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (xtap_state.state) {
+        case TD_SINGLE_TAP: unregister_code(KC_I); break;
+        case TD_DOUBLE_TAP: unregister_code(KC_GRV); break;
+
+        case TD_DOUBLE_SINGLE_TAP: unregister_code(KC_I); break;
+        default: break;
+    }
+    xtap_state.state = TD_NONE;
+}
+
+void o_finished(qk_tap_dance_state_t *state, void *user_data) {
+    xtap_state.state = cur_dance(state);
+    switch (xtap_state.state) {
+        case TD_SINGLE_TAP: register_code(KC_O); break;
+        case TD_DOUBLE_TAP: register_code(KC_EQL); break;
+        case TD_TRIPLE_TAP: register_code(KC_0); break;
+        case TD_QUAD_TAP: register_code(KC_LBRC); break;
+
+        case TD_DOUBLE_SINGLE_TAP: tap_code(KC_O); register_code(KC_O); break;
+        default: break;
+    }
+}
+
+void o_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (xtap_state.state) {
+        case TD_SINGLE_TAP: unregister_code(KC_O); break;
+        case TD_DOUBLE_TAP: unregister_code(KC_EQL); break;
+        case TD_TRIPLE_TAP: unregister_code(KC_0); break;
+        case TD_QUAD_TAP: unregister_code(KC_LBRC); break;
+        // case TD_DOUBLE_HOLD: unregister_code(KC_LALT); break;
+        case TD_DOUBLE_SINGLE_TAP: unregister_code(KC_O); break;
+        default: break;
+    }
+    xtap_state.state = TD_NONE;
+}
+
+void u_finished(qk_tap_dance_state_t *state, void *user_data) {
+    xtap_state.state = cur_dance(state);
+    switch (xtap_state.state) {
+        case TD_SINGLE_TAP: register_code(KC_U); break;
+        case TD_DOUBLE_TAP: register_code(KC_RBRC); break;
+        case TD_TRIPLE_TAP: register_code(KC_MINS); break;
+        case TD_QUAD_TAP: register_code(KC_BSLS); break;
+
+        case TD_DOUBLE_SINGLE_TAP: tap_code(KC_U); register_code(KC_U); break;
+        default: break;
+    }
+}
+
+void u_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (xtap_state.state) {
+        case TD_SINGLE_TAP: unregister_code(KC_U); break;
+        case TD_DOUBLE_TAP: unregister_code(KC_RBRC); break;
+        case TD_TRIPLE_TAP: unregister_code(KC_MINS); break;
+        case TD_QUAD_TAP: unregister_code(KC_BSLS); break;
+
+        case TD_DOUBLE_SINGLE_TAP: unregister_code(KC_U); break;
+        default: break;
+    }
+    xtap_state.state = TD_NONE;
+}
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [TD_A] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, a_finished, a_reset),
+    [TD_E] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, e_finished, e_reset),
+    [TD_I] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, i_finished, i_reset),
+    [TD_O] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, o_finished, o_reset),
+    [TD_U] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, u_finished, u_reset)
+};
+
+
+// OLED CUSTOMIZATIONS
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   if (!is_keyboard_master()) {

@@ -541,6 +541,6 @@ $(shell $(QMK_BIN) generate-version-h $(VERSION_H_FLAGS) -q -o quantum/version.h
 include $(ROOT_DIR)/testlist.mk
 
 miryoku_left:
-	qmk flash -c -kb crkbd -km manna-harbour_miryoku -bl dfu-split-left -e MIRYOKU_ALPHAS=QWERTY -e MIRYOKU_CLIPBOARD=MAC -e MIRYOKU_NAV=INVERTEDT
+	qmk flash -c -kb crkbd -km manna-harbour_miryoku -bl dfu-split-left -e MIRYOKU_ALPHAS=QWERTY -e MIRYOKU_CLIPBOARD=MAC -e MIRYOKU_NAV=INVERTEDT -e MIRYOKU_KLUDGE_THUMBCOMBOS=yes
 miryoku_right:
-	qmk flash -c -kb crkbd -km manna-harbour_miryoku -bl dfu-split-right -e MIRYOKU_ALPHAS=QWERTY -e MIRYOKU_CLIPBOARD=MAC
+	qmk flash -c -kb crkbd -km manna-harbour_miryoku -bl dfu-split-right -e MIRYOKU_ALPHAS=QWERTY -e MIRYOKU_CLIPBOARD=MAC -e MIRYOKU_NAV=INVERTEDT -e MIRYOKU_KLUDGE_THUMBCOMBOS=yes
