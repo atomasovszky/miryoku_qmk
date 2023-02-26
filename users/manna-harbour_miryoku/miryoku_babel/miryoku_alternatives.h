@@ -20,8 +20,8 @@ LT(BUTTON, KC_Z),  ALGR_T(KC_X),      KC_C,              KC_D,              KC_V
 U_NP,              U_NP,              LT(MEDIA, KC_ESC), LT(NAV, KC_SPC),   LT(MOUSE, KC_TAB), LT(SYM, KC_ENT),   LT(NUM, KC_BSPC),  LT(FUN, KC_DEL),   U_NP,              U_NP
 
 #define MIRYOKU_ALTERNATIVES_BASE_QWERTY \
-KC_Q,              KC_W,              TD(TD_E),          KC_R,              KC_T,              KC_Y,              TD(TD_U),          TD(TD_I),          TD(TD_O),          KC_P,              \
-TD(TD_A),          LCTL_T(KC_S),      LALT_T(KC_D),      LGUI_T(KC_F),      KC_G,              KC_H,              LGUI_T(KC_J),      LALT_T(KC_K),      LCTL_T(KC_L),      LSFT_T(KC_QUOT),   \
+KC_Q,              KC_W,              KC_E,              KC_R,              KC_T,              KC_Y,              KC_U,              KC_I,              KC_O,              KC_P,              \
+LSFT_T(KC_A),      LCTL_T(KC_S),      LALT_T(KC_D),      LGUI_T(KC_F),      KC_G,              KC_H,              LGUI_T(KC_J),      LALT_T(KC_K),      LCTL_T(KC_L),      LSFT_T(KC_QUOT),   \
 KC_Z,              LEFT_F13,          KC_C,              KC_V,              KC_B,              KC_N,              KC_M,              KC_COMM,           RIGHT_F13,         KC_SLSH,           \
 U_NP,              U_NP,              LT(MEDIA, KC_ESC), LT(NAV, KC_SPC),   LT(MOUSE, KC_TAB), LT(SYM, KC_ENT),   LT(NUM, KC_BSPC),  LT(FUN, KC_DEL),   U_NP,              U_NP
 
@@ -45,10 +45,10 @@ U_NA,              KC_ALGR,           U_NA,              U_NA,              U_NA
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              KC_ENT,            KC_BSPC,           KC_DEL,            U_NP,              U_NP
 
 #define MIRYOKU_ALTERNATIVES_MOUSE_INVERTEDT \
-RESET,             U_NA,              U_NA,              U_NA,              U_NA,              KC_WH_D,           KC_WH_R,           KC_MS_U,           KC_WH_L,           KC_WH_U,           \
-KC_LSFT,           KC_LCTL,           KC_LALT,           KC_LGUI,           U_NA,              U_NU,              KC_MS_L,           KC_MS_D,           KC_MS_R,           U_NU,              \
-U_NA,              KC_ALGR,           U_NA,              U_NA,              U_NA,              U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             \
-U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              KC_BTN1,           KC_BTN3,           KC_BTN2,           U_NP,              U_NP
+RESET,             U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              KC_0,              KC_MINS,           KC_EQL,            \
+KC_LSFT,           KC_LCTL,           KC_LALT,           KC_LGUI,           U_NA,              U_NA,              U_NA,              KC_LBRC,           KC_RBRC,           KC_BSLS,           \
+U_NA,              KC_ALGR,           U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              KC_SCLN,           KC_QUOT,            \
+U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NP,              U_NP
 
 #define MIRYOKU_ALTERNATIVES_MOUSE_VI \
 RESET,             U_NA,              U_NA,              U_NA,              U_NA,              U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             \
